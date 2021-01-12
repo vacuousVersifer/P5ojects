@@ -1,0 +1,21 @@
+{
+  "name": "maurer-rose",
+  "version": "0.0.1",
+  "description": "Simple Maurer Rose",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^4.3.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "license": "MIT"
+}
