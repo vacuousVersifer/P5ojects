@@ -1,7 +1,7 @@
 {
-  "name": "maurer-rose",
-  "version": "0.0.1",
-  "description": "Simple Maurer Rose",
+  "name": "a-p5js",
+  "version": "1.0.0",
+  "description": "A simple host for my p5js projects",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
