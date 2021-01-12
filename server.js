@@ -29,8 +29,8 @@ let sketchPages = [];
 // Find sketch file and additionals
 for (let i = 0; i < sketchFolders.length; i++) {
   let sketch = {
-    fullName: getFullName(sketchFolders[i]),
-    name: sketchFolders[i],
+    fullName: getFullName(sketchFolders[i].name),
+    name: sketchFolders[i].name,
     main: null,
     additional: []
   };
@@ -38,7 +38,7 @@ for (let i = 0; i < sketchFolders.length; i++) {
   let sketchFiles = getItems(`sketches/${sketch.name}`);
 
   for (let i = 0; i < sketchFiles.length; i++) {
-    let fileName = sketchFiles[i];
+    let fileName = sketchFiles[i].name;
     if (fileName[0] === fileName[0].toUpperCase()) {
       sketch.additional.push(fileName);
     } else {
@@ -61,6 +61,7 @@ app.get("/", (req, res) => {
   res.send(mainPage);
 });
 
+// Small CSS file to remove padding/margin
 app.get("/style.css", (req, res) => {
   res.sendFile(`${__dirname}/public/style.css`)
 })
