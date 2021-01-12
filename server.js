@@ -61,9 +61,19 @@ app.get("/", (req, res) => {
   res.send(mainPage);
 });
 
-// Small CSS file to remove padding/margin
-app.get("/style.css", (req, res) => {
-  res.sendFile(`${__dirname}/public/style.css`)
+// Send sketch or style.css
+app.get("/:sketch", (req, res) => {
+  let sketchName = req.params.sketch;
+
+  if(sketchName === "style.css") {
+    res.sendFile(`${__dirname}/public/style.css`)
+  } else {
+    for(let i = 0; i < sketches.length; i++) {
+      if(sketches[i].name === sketchName) {
+        res.send(sketchPages[i])
+      }
+    }
+  }
 })
 
 // Scripts
@@ -71,7 +81,6 @@ app.get("/:sketch/:script", (req, res) => {
   let sketchName = req.params.sketch;
   let scriptName = req.params.script;
 
-  console.log(`${__dirname}/sketches/${sketchName}/${scriptName}`);
   res.sendFile(`${__dirname}/sketches/${sketchName}/${scriptName}`);
 });
 
@@ -120,7 +129,7 @@ function createSketchPage(sketch) {
     <head>
       <title>${sketch.fullName}</title>
       
-      <link rel="icon" type="image/x-icon" href=faviconLink>
+      <link rel="icon" type="image/x-icon" href=${faviconLink}>
       <link rel="stylesheet" type="text/css" href="style.css">
         
       <script src=${p5jsCDN}></script>
