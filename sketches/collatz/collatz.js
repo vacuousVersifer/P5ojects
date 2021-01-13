@@ -1,3 +1,5 @@
+/* globals createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line */
+
 let canvas;
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
