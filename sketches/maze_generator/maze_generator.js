@@ -1,3 +1,6 @@
+/* globals frameRate keyCode UP_ARROW DOWN_ARROW RIGHT_ARROW LEFT_ARROW mouseX mouseY color dist ellipse floor noStroke rect random nostroke fill createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line colorMode pow HSB map p5 vector noFill int angleMode DEGREES beginShape sin cos vertex endShape CLOSE createVector ceil float */
+/* globals Cell */
+
 let cols, rows;
 let w = 20;
 let grid = [];
@@ -29,7 +32,7 @@ function draw() {
 
   current.visited = true;
   current.highlight();
-  
+
   var next = current.checkNeighbors();
   if (next) {
     next.visited = true;
@@ -42,7 +45,6 @@ function draw() {
   } else if (stack.length > 0) {
     current = stack.pop();
   }
-
 }
 
 function index(i, j) {
@@ -52,11 +54,10 @@ function index(i, j) {
   return i + j * cols;
 }
 
-
 function removeWalls(a, b) {
   let x = a.i - b.i;
   let y = a.j - b.j;
-  
+
   if (x === 1) {
     a.walls[3] = false;
     b.walls[1] = false;

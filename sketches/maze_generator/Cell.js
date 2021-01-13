@@ -1,3 +1,6 @@
+/* globals frameRate keyCode UP_ARROW DOWN_ARROW RIGHT_ARROW LEFT_ARROW mouseX mouseY color dist ellipse floor noStroke rect random nostroke fill createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line colorMode pow HSB map p5 vector noFill int angleMode DEGREES beginShape sin cos vertex endShape CLOSE createVector ceil float */
+/* globals index grid w */
+
 function Cell(i, j) {
   this.i = i;
   this.j = j;
@@ -31,17 +34,14 @@ function Cell(i, j) {
     } else {
       return undefined;
     }
-
-
-  }
+  };
   this.highlight = function() {
     let x = this.i * w;
     let y = this.j * w;
     noStroke();
     fill(0, 0, 255, 100);
     rect(x, y, w, w);
-
-  }
+  };
 
   this.show = function() {
     let x = this.i * w;
@@ -65,5 +65,5 @@ function Cell(i, j) {
       fill(255, 0, 255, 100);
       rect(x, y, w, w);
     }
-  }
+  };
 }

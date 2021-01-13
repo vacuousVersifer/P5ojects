@@ -1,59 +1,63 @@
+/* globals frameRate keyCode UP_ARROW DOWN_ARROW RIGHT_ARROW LEFT_ARROW mouseX mouseY color dist ellipse floor noStroke rect random nostroke fill createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line colorMode pow HSB map p5 vector noFill int angleMode DEGREES beginShape sin cos vertex endShape CLOSE createVector ceil float */
+
 let canvas;
 
-let order, N, total, path;
+const order = 8;
+let N;
+let total;
+
+let path = [];
+
+let counter = 0;
 
 function setup() {
-  canvas = createCanvas(windowWidth, windowWidth);
+  if (windowHeight > windowWidth) {
+    canvas = createCanvas(windowWidth, windowWidth);
+  } else {
+    canvas = createCanvas(windowHeight, windowHeight);
+  }
+
   canvas.style("display", "block");
 
   colorMode(HSB, 360, 255, 255);
+  background(0);
 
-  order = 6;
-  N = pow(2, order);
+  N = int(pow(2, order));
   total = N * N;
 
-  path = new Array(total);
-
-  for (let i = 0; i < counter; i++) {
+  for (let i = 0; i < total; i++) {
     path[i] = hilbert(i);
-
-    let wLen = width / N;
-    let hLen = height/ N;
-    path[i].mult(wLen, hLen);
-    path[i].add(wLen / 2, hLen / 2);
+    let len = width / N;
+    path[i].mult(len);
+    path[i].add(len / 2, len / 2);
   }
 }
-
-let counter = 1;
-let change = 1;
 
 function draw() {
   background(0);
 
-  strokeWeight(order);
-
-  if (counter >= path.length || counter < 0) {
-    change *= -1;
-    counter += change;
-  }
-
-  for (let i = 1; i < total; i++) {
+  stroke(255);
+  strokeWeight(5);
+  noFill();
+  for (let i = 1; i < counter; i++) {
     let h = map(i, 0, path.length, 0, 360);
     stroke(h, 255, 255);
-
     line(path[i].x, path[i].y, path[i - 1].x, path[i - 1].y);
   }
 
-  counter += change;
+  counter += 50;
+  if (counter >= path.length) {
+    counter = 0;
+  }
 }
 
 function hilbert(i) {
-  let points = [];
-
-  points.push(createVector(0, 0));
-  points.push(createVector(0, 1));
-  points.push(createVector(1, 1));
-  points.push(createVector(1, 0));
+  const points = [
+    new p5.Vector(0, 0),
+    new p5.Vector(0, 1),
+    new p5.Vector(1, 1),
+    new p5.Vector(1, 0)
+  ];
 
   let index = i & 3;
   let v = points[index];
@@ -61,24 +65,22 @@ function hilbert(i) {
   for (let j = 1; j < order; j++) {
     i = i >>> 2;
     index = i & 3;
-
     let len = pow(2, j);
-    if (index === 0) {
+    if (index == 0) {
       let temp = v.x;
       v.x = v.y;
       v.y = temp;
-    } else if (index === 1) {
+    } else if (index == 1) {
       v.y += len;
-    } else if (index === 2) {
+    } else if (index == 2) {
       v.x += len;
       v.y += len;
-    } else if (index === 3) {
+    } else if (index == 3) {
       let temp = len - 1 - v.x;
       v.x = len - 1 - v.y;
       v.y = temp;
       v.x += len;
     }
   }
-
   return v;
 }
