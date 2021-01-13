@@ -29,8 +29,8 @@ let sketchPages = [];
 // Find sketch file and additionals
 for (let i = 0; i < sketchFolders.length; i++) {
   let sketch = {
-    fullName: getFullName(sketchFolders[i]),
-    name: sketchFolders[i],
+    fullName: getFullName(sketchFolders[i].name),
+    name: sketchFolders[i].name,
     main: null,
     additional: []
   };
@@ -38,7 +38,7 @@ for (let i = 0; i < sketchFolders.length; i++) {
   let sketchFiles = getItems(`sketches/${sketch.name}`);
 
   for (let i = 0; i < sketchFiles.length; i++) {
-    let fileName = sketchFiles[i];
+    let fileName = sketchFiles[i].name;
     if (fileName[0] === fileName[0].toUpperCase()) {
       sketch.additional.push(fileName);
     } else {
@@ -65,16 +65,16 @@ app.get("/", (req, res) => {
 app.get("/:sketch", (req, res) => {
   let sketchName = req.params.sketch;
 
-  if (sketchName === "style.css") {
-    res.sendFile(`${__dirname}/public/style.css`);
+  if(sketchName === "style.css") {
+    res.sendFile(`${__dirname}/public/style.css`)
   } else {
-    for (let i = 0; i < sketches.length; i++) {
-      if (sketches[i].name === sketchName) {
-        res.send(sketchPages[i]);
+    for(let i = 0; i < sketches.length; i++) {
+      if(sketches[i].name === sketchName) {
+        res.send(sketchPages[i])
       }
     }
   }
-});
+})
 
 // Scripts
 app.get("/:sketch/:script", (req, res) => {
