@@ -29,8 +29,8 @@ let sketchPages = [];
 // Find sketch file and additionals
 for (let i = 0; i < sketchFolders.length; i++) {
   let sketch = {
-    fullName: getFullName(sketchFolders[i].name),
-    name: sketchFolders[i].name,
+    fullName: getFullName(sketchFolders[i]),
+    name: sketchFolders[i],
     main: null,
     additional: []
   };
@@ -38,7 +38,7 @@ for (let i = 0; i < sketchFolders.length; i++) {
   let sketchFiles = getItems(`sketches/${sketch.name}`);
 
   for (let i = 0; i < sketchFiles.length; i++) {
-    let fileName = sketchFiles[i].name;
+    let fileName = sketchFiles[i];
     if (fileName[0] === fileName[0].toUpperCase()) {
       sketch.additional.push(fileName);
     } else {
