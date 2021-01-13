@@ -1,3 +1,5 @@
+/* globals frameRate keyCode UP_ARROW DOWN_ARROW RIGHT_ARROW LEFT_ARROW mouseX mouseY color dist ellipse floor noStroke rect random nostroke fill createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line colorMode pow HSB map p5 vector noFill int angleMode DEGREES beginShape sin cos vertex endShape CLOSE createVector ceil float */
+
 class Star {
   constructor(speed) {
     this.x = random(-width, width);
@@ -38,8 +40,8 @@ class Star {
     this.px = map(this.x / this.pz, 0, 1, 0, width);
     this.py = map(this.y / this.pz, 0, 1, 0, height);
 
-    this.pz = this.z
-    
+    this.pz = this.z;
+
     line(this.px, this.py, this.sx, this.sy);
   }
 }

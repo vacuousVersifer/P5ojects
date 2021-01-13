@@ -1,3 +1,6 @@
+/* globals frameRate keyCode UP_ARROW DOWN_ARROW RIGHT_ARROW LEFT_ARROW mouseX mouseY color dist ellipse floor noStroke rect random nostroke fill createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line colorMode pow HSB map p5 vector noFill int angleMode DEGREES beginShape sin cos vertex endShape CLOSE createVector ceil float */
+/* globals scl apple */
+
 class Snake {
   constructor() {
     let location = pickLocation();
@@ -34,7 +37,7 @@ class Snake {
   }
 
   show() {
-    noStroke()
+    noStroke();
     for (let i = 0; i < this.tail.length; i++) {
       fill(random(0, 10), random(200, 255), random(0, 10));
       rect(this.tail[i].x, this.tail[i].y, scl, scl);

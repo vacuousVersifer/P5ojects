@@ -1,4 +1,7 @@
-let canvas
+/* globals frameRate keyCode UP_ARROW DOWN_ARROW RIGHT_ARROW LEFT_ARROW mouseX mouseY color dist ellipse floor noStroke rect random nostroke fill createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line colorMode pow HSB map p5 vector noFill int angleMode DEGREES beginShape sin cos vertex endShape CLOSE createVector ceil float */
+/* globals OpenSimplexNoise */
+
+let canvas;
 
 let field = [];
 let rez = 5;
@@ -10,7 +13,7 @@ let noise;
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.style("display", "block");
-  
+
   noise = new OpenSimplexNoise(Date.now());
   cols = 1 + width / rez;
   rows = 1 + height / rez;
@@ -28,7 +31,7 @@ function drawLine(v1, v2) {
 }
 
 function draw() {
-  background(0); 
+  background(0);
   let xoff = 0;
   for (let i = 0; i < cols; i++) {
     xoff += increment;
@@ -40,9 +43,6 @@ function draw() {
   }
   zoff += 0.03;
 
-
-
-
   //for (let i = 0; i < cols; i++) {
   //  for (let j = 0; j < rows; j++) {
   //    fill(field[i][j]*255);
@@ -51,68 +51,72 @@ function draw() {
   //  }
   //}
 
-  for (let i = 0; i < cols-1; i++) {
-    for (let j = 0; j < rows-1; j++) {
+  for (let i = 0; i < cols - 1; i++) {
+    for (let j = 0; j < rows - 1; j++) {
       let x = i * rez;
       let y = j * rez;
-      let a = createVector(x + rez * 0.5, y            );
+      let a = createVector(x + rez * 0.5, y);
       let b = createVector(x + rez, y + rez * 0.5);
-      let c = createVector(x + rez * 0.5, y + rez      );
+      let c = createVector(x + rez * 0.5, y + rez);
       let d = createVector(x, y + rez * 0.5);
-      let state = getState(ceil(field[i][j]), ceil(field[i+1][j]), 
-        ceil(field[i+1][j+1]), ceil(field[i][j+1]));
+      let state = getState(
+        ceil(field[i][j]),
+        ceil(field[i + 1][j]),
+        ceil(field[i + 1][j + 1]),
+        ceil(field[i][j + 1])
+      );
       stroke(255);
       strokeWeight(1);
       switch (state) {
-      case 1:  
-        drawLine(c, d);
-        break;
-      case 2:  
-        drawLine(b, c);
-        break;
-      case 3:  
-        drawLine(b, d);
-        break;
-      case 4:  
-        drawLine(a, b);
-        break;
-      case 5:  
-        drawLine(a, d);
-        drawLine(b, c);
-        break;
-      case 6:  
-        drawLine(a, c);
-        break;
-      case 7:  
-        drawLine(a, d);
-        break;
-      case 8:  
-        drawLine(a, d);
-        break;
-      case 9:  
-        drawLine(a, c);
-        break;
-      case 10: 
-        drawLine(a, b);
-        drawLine(c, d);
-        break;
-      case 11: 
-        drawLine(a, b);
-        break;
-      case 12: 
-        drawLine(b, d);
-        break;
-      case 13: 
-        drawLine(b, c);
-        break;
-      case 14: 
-        drawLine(c, d);
-        break;
+        case 1:
+          drawLine(c, d);
+          break;
+        case 2:
+          drawLine(b, c);
+          break;
+        case 3:
+          drawLine(b, d);
+          break;
+        case 4:
+          drawLine(a, b);
+          break;
+        case 5:
+          drawLine(a, d);
+          drawLine(b, c);
+          break;
+        case 6:
+          drawLine(a, c);
+          break;
+        case 7:
+          drawLine(a, d);
+          break;
+        case 8:
+          drawLine(a, d);
+          break;
+        case 9:
+          drawLine(a, c);
+          break;
+        case 10:
+          drawLine(a, b);
+          drawLine(c, d);
+          break;
+        case 11:
+          drawLine(a, b);
+          break;
+        case 12:
+          drawLine(b, d);
+          break;
+        case 13:
+          drawLine(b, c);
+          break;
+        case 14:
+          drawLine(c, d);
+          break;
       }
     }
   }
 }
 
 function getState(a, b, c, d) {
-  return a * 8 + b * 4  + c * 2 + d * 1;
+  return a * 8 + b * 4 + c * 2 + d * 1;
 }
