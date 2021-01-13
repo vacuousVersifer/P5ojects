@@ -54,23 +54,33 @@ for (let i = 0; i < sketchFolders.length; i++) {
 }
 
 // Make main page with sketches
-let mainPage = makeMainPage(sketches)
+let mainPage = makeMainPage(sketches);
 
 // Main page
 app.get("/", (req, res) => {
   res.send(mainPage);
 });
 
-app.get("/style.css", (req, res) => {
-  res.sendFile(`${__dirname}/public/style.css`)
-})
+// Send sketch or style.css
+app.get("/:sketch", (req, res) => {
+  let sketchName = req.params.sketch;
+
+  if (sketchName === "style.css") {
+    res.sendFile(`${__dirname}/public/style.css`);
+  } else {
+    for (let i = 0; i < sketches.length; i++) {
+      if (sketches[i].name === sketchName) {
+        res.send(sketchPages[i]);
+      }
+    }
+  }
+});
 
 // Scripts
 app.get("/:sketch/:script", (req, res) => {
   let sketchName = req.params.sketch;
   let scriptName = req.params.script;
 
-  console.log(`${__dirname}/sketches/${sketchName}/${scriptName}`);
   res.sendFile(`${__dirname}/sketches/${sketchName}/${scriptName}`);
 });
 
@@ -80,8 +90,8 @@ function getItems(folderName) {
   let items = [];
   items = fs
     .readdirSync(folderName, config)
-    .filter(dirent => items.push(dirent));
-
+    .filter(dirent => items.push(dirent || dirent.name));
+  
   return items;
 }
 
@@ -119,7 +129,7 @@ function createSketchPage(sketch) {
     <head>
       <title>${sketch.fullName}</title>
       
-      <link rel="icon" type="image/x-icon" href=faviconLink>
+      <link rel="icon" type="image/x-icon" href=${faviconLink}>
       <link rel="stylesheet" type="text/css" href="style.css">
         
       <script src=${p5jsCDN}></script>
@@ -148,12 +158,12 @@ function createSketchPage(sketch) {
 
 function makeMainPage(sketches) {
   let mainPage = "";
-  
-  for(let i = 0; i < sketches.length; i++) {
-    let sketchLink = `<a href="${sketches[i].name}">${sketches[i].fullName}</a><br>`
-    
-    mainPage += sketchLink
+
+  for (let i = 0; i < sketches.length; i++) {
+    let sketchLink = `<a href="${sketches[i].name}">${sketches[i].fullName}</a><br>`;
+
+    mainPage += sketchLink;
   }
-  
+
   return mainPage;
 }

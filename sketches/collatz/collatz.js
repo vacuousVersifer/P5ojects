@@ -3,23 +3,28 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.style("display", "block");
   background(0);
-  for (let i = 1; i < 10000; i++) {
-    let sequence = [];
+}
+
+let i = 0;
+function draw() {
+  console.log(i);
+  if(i == 'n') {
+    let seq = [];
     let n = i;
     do {
-      sequence.push(n);
+      seq.push(n);
       n = collatz(n);
     } while (n != 1);
-    sequence.push(1);
-    sequence.reverse();
+    seq.push(1);
+    seq.reverse();
 
     let len = 5;
     let angle = 0.15;
     resetMatrix();
-    translate(width / 2, height);
-    for (let j = 0; j < sequence.length; j++) {
-      let value = sequence[j];
-      if (value % 2 == 0) {
+    translate(width/2, height);
+    for (let j = 0; j < seq.length; j++) {
+      let val = seq[j];
+      if (val % 2 == 0) {
         rotate(angle);
       } else {
         rotate(-angle);
@@ -28,7 +33,8 @@ function setup() {
       stroke(255, 10);
       line(0, 0, 0, -len);
       translate(0, -len);
-    }
+      }
+    i++;
   }
 }
 
