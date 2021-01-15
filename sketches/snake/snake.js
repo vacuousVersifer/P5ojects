@@ -42,8 +42,3 @@ function keyPressed() {
       break;
   }
 }
-
-function mousePressed() {
-  console.log(mouseX);
-  console.log(mouseY);
-}

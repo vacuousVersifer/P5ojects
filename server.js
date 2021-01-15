@@ -11,7 +11,7 @@ app.listen(process.env.PORT || 4130, () => {
 app.use((req, res, next) => {
   res.setHeader(
     "content-security-policy",
-    "default-src 'self'; script-src 'report-sample' 'self' https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js; style-src 'report-sample' 'self'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; img-src 'self' https://cdn.glitch.com; manifest-src 'self'; media-src 'self'; report-uri https://5fff1f87bcd8c7f28285d1a6.endpoint.csper.io/; worker-src 'none';"
+    "default-src 'self'; script-src 'report-sample' 'self' https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js; style-src 'report-sample' 'self'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; img-src 'self' https://cdn.glitch.com; manifest-src 'self'; media-src 'self'; report-uri https://6001d285937fe147894b8848.endpoint.csper.io/; worker-src blob:;"
   );
   next();
 });
@@ -65,16 +65,18 @@ app.get("/", (req, res) => {
 app.get("/:sketch", (req, res) => {
   let sketchName = req.params.sketch;
 
-  if(sketchName === "style.css") {
-    res.sendFile(`${__dirname}/public/style.css`)
+  if (sketchName === "style.css") {
+    res.sendFile(`${__dirname}/public/style.css`);
+  } else if (sketchName === "p5.min.js") {
+    res.sendFile(`${__dirname}/public/p5.min.js`)
   } else {
-    for(let i = 0; i < sketches.length; i++) {
-      if(sketches[i].name === sketchName) {
-        res.send(sketchPages[i])
+    for (let i = 0; i < sketches.length; i++) {
+      if (sketches[i].name === sketchName) {
+        res.send(sketchPages[i]);
       }
     }
   }
-})
+});
 
 // Scripts
 app.get("/:sketch/:script", (req, res) => {
@@ -118,7 +120,6 @@ function getFullName(sketchName) {
 // Using info about a sketch, create a sketch page
 function createSketchPage(sketch) {
   let sketchPage = "";
-  let p5jsCDN = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js";
   let faviconLink =
     "https://cdn.glitch.com/a804a569-76e3-4174-a157-32c41926638a%2Fhilbert-curve.ico?v=1605799309728";
 
@@ -132,7 +133,7 @@ function createSketchPage(sketch) {
       <link rel="icon" type="image/x-icon" href=${faviconLink}>
       <link rel="stylesheet" type="text/css" href="style.css">
         
-      <script src=${p5jsCDN}></script>
+      <script src="/p5.min.js"}></script>\n
       <script src=${mainLink}></script>\n`;
 
   sketchPage += partOne;
