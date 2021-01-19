@@ -1,6 +1,6 @@
 {
   "name": "a-p5js",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A simple host for my p5js projects",
   "main": "server.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "helmet": "^4.3.0"
+    "helmet": "^4.4.1"
   },
   "engines": {
     "node": "14.15.4"
