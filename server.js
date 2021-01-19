@@ -1,22 +1,19 @@
 // Set up basic server with https
 const express = require("express");
-const app = express();
-const helmet = require("helmet");
-app.use(helmet());
-app.listen(process.env.PORT || 4130, () => {
-  console.log(`Listening on port ${process.env.PORT || 4130}`);
+const app = express().use(require("helmet")());
+const listener = app.listen(process.env.PORT || 4130, () => {
+  console.log(`Listening on port ${listener.address().port}`);
 });
 
 // Content Security Policy
 app.use((req, res, next) => {
   res.setHeader(
     "content-security-policy",
-    "default-src 'self'; script-src 'report-sample' 'self' https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js; style-src 'report-sample' 'self'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; img-src 'self' https://cdn.glitch.com; manifest-src 'self'; media-src 'self'; report-uri https://6001d285937fe147894b8848.endpoint.csper.io/; worker-src blob:;"
+    "default-src 'self'; script-src 'report-sample' 'self' https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js; style-src 'report-sample' 'self'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; img-src 'self' https://cdn.glitch.com; manifest-src 'self'; media-src 'self'; report-uri https://5fff1f87bcd8c7f28285d1a6.endpoint.csper.io/; worker-src 'none';"
   );
   next();
 });
 
-// https://app.creately.com/diagram/wQLrajbJ5zH/edit
 let fs = require("fs");
 
 // Get sketch folders
@@ -65,18 +62,16 @@ app.get("/", (req, res) => {
 app.get("/:sketch", (req, res) => {
   let sketchName = req.params.sketch;
 
-  if (sketchName === "style.css") {
-    res.sendFile(`${__dirname}/public/style.css`);
-  } else if (sketchName === "p5.min.js") {
-    res.sendFile(`${__dirname}/public/p5.min.js`)
+  if(sketchName === "style.css") {
+    res.sendFile(`${__dirname}/public/style.css`)
   } else {
-    for (let i = 0; i < sketches.length; i++) {
-      if (sketches[i].name === sketchName) {
-        res.send(sketchPages[i]);
+    for(let i = 0; i < sketches.length; i++) {
+      if(sketches[i].name === sketchName) {
+        res.send(sketchPages[i])
       }
     }
   }
-});
+})
 
 // Scripts
 app.get("/:sketch/:script", (req, res) => {
@@ -92,8 +87,11 @@ function getItems(folderName) {
   let items = [];
   items = fs
     .readdirSync(folderName, config)
-    .filter(dirent => items.push(dirent || dirent.name));
+    .filter(dirent => items.push(dirent));
 
+  for(let i = 0; i < items.length; i++) {
+    items[i] = items[i].name
+  }
   return items;
 }
 
@@ -120,6 +118,7 @@ function getFullName(sketchName) {
 // Using info about a sketch, create a sketch page
 function createSketchPage(sketch) {
   let sketchPage = "";
+  let p5jsCDN = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js";
   let faviconLink =
     "https://cdn.glitch.com/a804a569-76e3-4174-a157-32c41926638a%2Fhilbert-curve.ico?v=1605799309728";
 
@@ -133,7 +132,7 @@ function createSketchPage(sketch) {
       <link rel="icon" type="image/x-icon" href=${faviconLink}>
       <link rel="stylesheet" type="text/css" href="style.css">
         
-      <script src="/p5.min.js"}></script>\n
+      <script src=${p5jsCDN}></script>
       <script src=${mainLink}></script>\n`;
 
   sketchPage += partOne;
