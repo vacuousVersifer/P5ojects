@@ -1,10 +1,8 @@
 // Set up basic server with https
 const express = require("express");
-const app = express();
-const helmet = require("helmet");
-app.use(helmet());
-app.listen(process.env.PORT || 4130, () => {
-  console.log(`Listening on port ${process.env.PORT || 4130}`);
+const app = express().use(require("helmet")());
+const listener = app.listen(process.env.PORT || 4130, () => {
+  console.log(`Listening on port ${listener.address().port}`);
 });
 
 // Content Security Policy
@@ -16,7 +14,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// https://app.creately.com/diagram/wQLrajbJ5zH/edit
 let fs = require("fs");
 
 // Get sketch folders
@@ -90,8 +87,11 @@ function getItems(folderName) {
   let items = [];
   items = fs
     .readdirSync(folderName, config)
-    .filter(dirent => items.push(dirent || dirent.name));
+    .filter(dirent => items.push(dirent));
 
+  for(let i = 0; i < items.length; i++) {
+    items[i] = items[i].name
+  }
   return items;
 }
 
