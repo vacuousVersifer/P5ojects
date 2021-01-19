@@ -1,7 +1,7 @@
 /* globals windowHeight windowWidth createCanvas colorMode background int width height HSB pow stroke strokeWeight line noFill map p5 */
 let canvas;
 
-const order = 8;
+const order = 4;
 let N, total;
 let path = new Array();
 
