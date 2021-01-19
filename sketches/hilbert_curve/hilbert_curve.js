@@ -29,7 +29,7 @@ function setup() {
 }
 
 let counter = 1;
-let step = 100;
+let step = 1;
 
 function draw() {
   for (let i = 0; i < step; i++) {
