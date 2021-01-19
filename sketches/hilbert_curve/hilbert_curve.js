@@ -2,12 +2,8 @@
 let canvas;
 
 const order = 8;
-let N;
-let total;
-
-let path = [];
-
-let counter = 0;
+let N, total;
+let path = new Array();
 
 function setup() {
   if (windowHeight > windowWidth) {
@@ -32,22 +28,30 @@ function setup() {
   }
 }
 
+let counter = 1;
+let step = 100;
+
 function draw() {
-  background(0);
-
-  stroke(255);
-  strokeWeight(5);
-  noFill();
-  for (let i = 1; i < counter; i++) {
-    let h = map(i, 0, path.length, 0, 360);
-    stroke(h, 255, 255);
-    line(path[i].x, path[i].y, path[i - 1].x, path[i - 1].y);
+  for (let i = 0; i < step; i++) {
+    if (counter + i < path.length) {
+      stroke(255);
+      strokeWeight(5);
+      noFill();
+      let h = map(counter, 0, path.length, 0, 360);
+      stroke(h, 255, 255);
+      line(
+        path[counter + i].x,
+        path[counter + i].y,
+        path[counter + i - 1].x,
+        path[counter + i - 1].y
+      );
+    } else {
+      background(0);
+      counter = 0;
+    }
   }
 
-  counter += 50;
-  if (counter >= path.length) {
-    counter = 0;
-  }
+  counter += step;
 }
 
 function hilbert(i) {
