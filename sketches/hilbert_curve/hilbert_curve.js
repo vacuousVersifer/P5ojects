@@ -1,7 +1,7 @@
-/* globals windowHeight windowWidth createCanvas colorMode background int width height HSB pow stroke strokeWeight line noFill map p5 */
+/* globals windowHeight windowWidth createCanvas colorMode background int width height HSB pow stroke strokeWeight line noFill map p5 frameRate*/
 let canvas;
 
-const order = 4;
+const order = 10;
 let N, total;
 let path = new Array();
 
@@ -29,13 +29,18 @@ function setup() {
 }
 
 let counter = 1;
-let step = 1;
+let step = 1000;
+let reset = false;
 
 function draw() {
+  if(!frameRate() > 55) {
+    step--
+  }
+  
   for (let i = 0; i < step; i++) {
     if (counter + i < path.length) {
       stroke(255);
-      strokeWeight(5);
+      strokeWeight(1);
       noFill();
       let h = map(counter, 0, path.length, 0, 360);
       stroke(h, 255, 255);
@@ -46,12 +51,17 @@ function draw() {
         path[counter + i - 1].y
       );
     } else {
-      background(0);
-      counter = 0;
+      reset = true;
     }
   }
 
-  counter += step;
+  if (reset) {
+    reset = false;
+    background(0);
+    counter = 1;
+  } else {
+    counter += step;
+  }
 }
 
 function hilbert(i) {
