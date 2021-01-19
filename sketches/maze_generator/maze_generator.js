@@ -1,4 +1,4 @@
-/* global createCanvas windowWidth windowHeight floor width height Cell background */
+/* global createCanvas windowWidth windowHeight floor width height Cell background canvas */
 
 let cols, rows;
 let w = 20;
@@ -9,7 +9,11 @@ let current;
 let stack = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  if (windowHeight > windowWidth) {
+    canvas = createCanvas(windowWidth, windowWidth);
+  } else {
+    canvas = createCanvas(windowHeight, windowHeight);
+  }
   cols = floor(width / w);
   rows = floor(height / w);
 
