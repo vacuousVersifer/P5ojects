@@ -120,7 +120,7 @@ function createSketchPage(sketch) {
   let sketchPage = "";
   let p5jsCDN = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js";
   let faviconLink =
-    "https://cdn.glitch.com/a804a569-76e3-4174-a157-32c41926638a%2Fhilbert-curve.ico?v=1605799309728";
+    "https://cdn.glitch.com/a804a569-76e3-4174-a157-32c41926638a%2Fhilbert_curve.ico?v=1611074615736";
 
   let mainLink = `"${sketch.name}/${sketch.main}"`;
 
