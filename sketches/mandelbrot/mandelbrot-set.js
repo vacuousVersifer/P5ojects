@@ -1,3 +1,5 @@
+/* global windowHeight windowWidth createCanvas createSlider pixelDensity loadPixels updatePixels map width height abs pixels */
+
 let canvas;
 
 let zoomSlider, zoom;
