@@ -8,9 +8,7 @@ const listener = app.listen(process.env.PORT || 4130, () => {
 // Content Security Policy
 app.use((req, res, next) => {
   res.setHeader(
-    "content-security-policy",
-    "default-src 'self'; script-src 'report-sample' 'self' https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js; style-src 'report-sample' 'self'; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self'; frame-src 'self'; img-src 'self' https://cdn.glitch.com; manifest-src 'self'; media-src 'self'; report-uri https://5fff1f87bcd8c7f28285d1a6.endpoint.csper.io/; worker-src 'none';"
-  );
+    "content-security-policy", process.env.CSP);
   next();
 });
 
