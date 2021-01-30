@@ -1,6 +1,6 @@
 {
   "name": "a-p5js",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "A simple host for my p5js projects",
   "main": "server.js",
   "scripts": {
