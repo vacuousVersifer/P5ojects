@@ -57,7 +57,7 @@ module.exports = class Sketch {
 		  <head>
 		    <title>${sketch.full_name}</title>
 
-		    <link rel='stylesheet' type='text/css' href='style.css'>
+		    <link rel='stylesheet' type='text/css' href='sketch.css'>
 
 		    <script src=${p5js_cdn} defer></script>
 		    <script src=${main_link} defer></script>\n`;
