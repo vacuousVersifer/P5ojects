@@ -1,14 +1,16 @@
 {
   "name": "a-p5js",
-  "version": "1.4.1",
+  "version": "3.0.0",
   "description": "A simple host for my p5js projects",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "helmet": "^4.4.1"
+    "helmet": "^4.4.1",
+    "socket.io": "^3.1.0"
   },
   "engines": {
     "node": "14.15.4"
