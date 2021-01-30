@@ -1,9 +1,26 @@
-// Set up basic server with https
-const express = require("express");
-const app = express().use(require("helmet")());
-const listener = app.listen(process.env.PORT || 4130, () => {
+// Express
+const express = require('express');
+const app = express();
+
+// Helmet
+const helmet = require('helmet');
+app.use(helmet());
+
+// http
+const http = require('http');
+const server = http.createServer(app);
+
+// Socket.io
+const socketio = require('socket.io');
+const io = socketio(server);
+
+// Enviroment Variables
+const dotenv = require('dotenv').config();
+
+// Listener
+const listener = server.listen(process.env.PORT, () => {
   console.log(`Listening on port ${listener.address().port}`);
-});
+})
 
 // Content Security Policy
 app.use((req, res, next) => {
