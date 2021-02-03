@@ -1,6 +1,6 @@
 const get_items = require("./get_items.js");
 
-const p5js_cdn = "https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js";
+const p5js_cdn = "https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js";
 
 module.exports = class Sketch {
   constructor(name) {
@@ -51,16 +51,19 @@ module.exports = class Sketch {
   }
 
   make_sketch_page(sketch) {
-    let main_link = `'${sketch.name}/${sketch.files.main}'`;
+    let main_link = `"${sketch.name}/${sketch.files.main}"`;
     let sketch_page = `<!DOCTYPE html>
-		<html lang='en'>
-		  <head>
-		    <title>${sketch.full_name}</title>
-
-		    <link rel='stylesheet' type='text/css' href='sketch.css'>
-
-		    <script src=${p5js_cdn} defer></script>
-		    <script src=${main_link} defer></script>\n`;
+<html lang="en">
+  <head>
+    <title>${sketch.full_name}</title>
+        
+    <meta name=description content="A simple site for p5js projects">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		<link rel="stylesheet" type="text/css" href="sketch.css">
+    
+    <script src="${p5js_cdn}" defer></script>
+		<script src=${main_link} defer></script>`;
 
     let additions = "";
 
@@ -68,15 +71,14 @@ module.exports = class Sketch {
 
     for (let i = 0; i < length; i++) {
       let end = i !== length ? "\n" : "";
-      let addition_tag = `      <script src='${sketch.name}'></script>${end}`;
+      let addition_tag = `<script src=${sketch.name}></script>${end}`;
 
       sketch_page += addition_tag;
     }
 
-    sketch_page += `
-		</head>
-		  <body></body>
-		</html>`;
+    sketch_page += `  </head>
+  <body></body>
+</html>`;
 
     return sketch_page;
   }
