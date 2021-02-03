@@ -4,7 +4,7 @@ let canvas;
 
 let zoomSlider, zoom;
 let xSlider, xOff;
-let ySlider, yOff
+let ySlider, yOff;
 
 function setup() {
   if (windowHeight > windowWidth) {
@@ -14,9 +14,9 @@ function setup() {
   }
   canvas.style("display", "block");
 
-  zoomSlider = createSlider(0.01, 2.50, 2.5, 0.01);
-  xSlider    = createSlider(-10, 10, 0, 0.1);
-  ySlider    = createSlider(-10, 10, 0, 0.1);
+  zoomSlider = createSlider(0.01, 2.5, 2.5, 0.01);
+  xSlider = createSlider(-10, 10, 0, 0.1);
+  ySlider = createSlider(-10, 10, 0, 0.1);
 }
 
 function draw() {

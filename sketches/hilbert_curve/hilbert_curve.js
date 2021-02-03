@@ -33,10 +33,10 @@ let step = 1000;
 let reset = false;
 
 function draw() {
-  if(!frameRate() > 55) {
-    step--
+  if (!frameRate() > 55) {
+    step--;
   }
-  
+
   for (let i = 0; i < step; i++) {
     if (counter + i < path.length) {
       stroke(255);
