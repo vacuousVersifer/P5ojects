@@ -1,5 +1,5 @@
 module.exports = sketches => {
-	let main_page = `<!DOCTYPE html>
+  let main_page = `<!DOCTYPE html>
 	<html lang='en'>
 	  <head>
 	    <title>p5rojects</title>
@@ -10,16 +10,16 @@ module.exports = sketches => {
 	    <h1>p5ojects</h1>
 	    <ul>`;
 
-	for(let i = 0; i < sketches.length; i++) {
-		let sketch_link = `<li><a href='${sketches[i].name}'>${sketches[i].full_name}</a></li>`;
+  for (let i = 0; i < sketches.length; i++) {
+    let sketch_link = `<li><a href='${sketches[i].name}'>${sketches[i].full_name}</a></li>`;
 
-		main_page += sketch_link;
-	}
+    main_page += sketch_link;
+  }
 
-	main_page += `
+  main_page += `
 	</ul>
 	</body>
 	</html>`;
 
-	return main_page;
-}
+  return main_page;
+};
