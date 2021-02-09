@@ -103,5 +103,17 @@ dist
 # TernJS port file
 .tern-port
 
+# Ask Glitch
+# I Don't Know What These Are
+.glitch-assets
 package-lock.json
 shrinkwrap.yaml
+
+# Token File
+.env
+
+# For SQLite
+data/
+
+# For ESLint
+.eslintrc.json
