@@ -1,21 +1,11 @@
 /* global createCanvas windowWidth windowHeight width height Cell background mouseX mouseY */
 
-let canvas;
-
-let cells = new Array(10);
-
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
-  canvas.style("display", "block");
-
-  for (let i = 0; i < cells.length; i++) {
-    let cell = new Cell();
-    cells[i] = cell;
-  }
+  init()
 }
 
 function draw() {
-  background(200);
+  background(background_color);
   for (var i = 0; i < cells.length; i++) {
     cells[i].move();
     cells[i].show();
@@ -37,4 +27,44 @@ function keyPressed() {
     let cell = new Cell();
     cells[i] = cell;
   }
+}
+
+function windowResized() {
+  make_canvas()
+
+  cells = new Array(10);
+  
+  for (let i = 0; i < cells.length; i++) {
+    let cell = new Cell();
+    cells[i] = cell;
+  }
+}
+
+let cells;
+function init() {
+  make_canvas()
+
+  cells = new Array(10);
+  
+  for (let i = 0; i < cells.length; i++) {
+    let cell = new Cell();
+    cells[i] = cell;
+  }
+}
+
+const background_color = 200;
+let canvas;
+function make_canvas() {
+  let div_height = document.getElementById("name_header").clientHeight;
+  
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  
+  let n_width = windowWidth - padding * 2;
+  let n_height = windowHeight - div_height - padding;
+
+  canvas = createCanvas(n_width, n_height);
+  canvas.parent("canvas_container")
+
+  background(background_color);
 }

@@ -71,13 +71,18 @@ module.exports = class Sketch {
 
     for (let i = 0; i < length; i++) {
       let end = i !== length ? "\n" : "";
-      let addition_tag = `<script src=${sketch.name}></script>${end}`;
+      let addition_tag = `<script src=${sketch.name}/${sketch.files.additional[i]}></script>${end}`;
 
       sketch_page += addition_tag;
     }
 
     sketch_page += `  </head>
-  <body></body>
+  <body>
+    <div class="header" id="name_header">
+        <h1>${sketch.full_name}</h1>
+      </div>
+      <div id="canvas_container"></div>
+  </body>
 </html>`;
 
     return sketch_page;

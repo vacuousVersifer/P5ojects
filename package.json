@@ -1,16 +1,17 @@
 {
-  "name": "a-p5js",
-  "version": "2.0.0",
+  "name": "p5ojects",
+  "version": "3.1.0",
   "description": "A simple host for my p5js projects",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "./node_modules/.bin/eslint --fix && refresh"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
-    "socket.io": "^3.1.0"
+    "socket.io": "^3.1.1"
   },
   "engines": {
     "node": "14.15.4"
@@ -19,5 +20,17 @@
     "node",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vacuousVersifer/p5ojects.git"
+  },
+  "author": "vacuousVersifer",
+  "bugs": {
+    "url": "https://github.com/vacuousVersifer/p5ojects/issues"
+  },
+  "homepage": "https://github.com/vacuousVersifer/p5ojects#readme"
 }

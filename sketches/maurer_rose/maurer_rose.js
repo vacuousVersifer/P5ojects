@@ -1,18 +1,13 @@
 /* global windowHeight windowWidth createCanvas width height angleMode DEGREES background translate stroke strokeWeight noFill beginShape endShape cos sin vertex CLOSE */
 
-let canvas;
-
-let n = 0;
-let d = 0;
-
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
-  canvas.style("display", "block");
+  init();
+
   angleMode(DEGREES);
 }
 
 function draw() {
-  background(0);
+  background(background_color);
   translate(width / 2, height / 2);
   stroke(255);
 
@@ -21,7 +16,7 @@ function draw() {
   strokeWeight(1);
   for (let i = 0; i < 360; i++) {
     let k = i * d;
-    let r = 300 * sin(n * k);
+    let r = (width / 2.5) * sin(n * k);
     let x = r * cos(k);
     let y = r * sin(k);
     vertex(x, y);
@@ -33,7 +28,7 @@ function draw() {
   strokeWeight(4);
   for (let i = 0; i < 360; i++) {
     let k = i;
-    let r = 300 * sin(n * k);
+    let r = (width / 2.5) * sin(n * k);
     let x = r * cos(k);
     let y = r * sin(k);
     vertex(x, y);
@@ -42,4 +37,35 @@ function draw() {
 
   n += 0.01;
   d += 0.01;
+}
+
+function windowResized() {
+  make_canvas()
+
+  n = 0;
+  d = 0;
+}
+
+let n, d;
+function init() {
+  make_canvas()
+
+  n = 0;
+  d = 0;
+}
+
+const background_color = 0;
+let canvas;
+function make_canvas() {
+  let div_height = document.getElementById("name_header").clientHeight;
+  
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  
+  let n_height = windowHeight - div_height - padding;
+
+  canvas = createCanvas(n_height, n_height);
+  canvas.parent("canvas_container")
+
+  background(background_color);
 }

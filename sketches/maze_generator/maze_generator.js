@@ -1,34 +1,11 @@
-/* global createCanvas windowWidth windowHeight floor width height Cell background canvas */
-
-let cols, rows;
-let w = 20;
-let grid = [];
-
-let current;
-
-let stack = [];
+/* global createCanvas windowWidth windowHeight floor width height Cell background */
 
 function setup() {
-  if (windowHeight > windowWidth) {
-    canvas = createCanvas(windowWidth, windowWidth);
-  } else {
-    canvas = createCanvas(windowHeight, windowHeight);
-  }
-  cols = floor(width / w);
-  rows = floor(height / w);
-
-  for (let j = 0; j < rows; j++) {
-    for (let i = 0; i < cols; i++) {
-      let cell = new Cell(i, j);
-      grid.push(cell);
-    }
-  }
-
-  current = grid[0];
+  init();
 }
 
 function draw() {
-  background(50);
+  background(background_color);
   for (let i = 0; i < grid.length; i++) {
     grid[i].show();
   }
@@ -75,4 +52,61 @@ function removeWalls(a, b) {
     a.walls[2] = false;
     b.walls[0] = false;
   }
+}
+
+function windowResized() {
+  make_canvas()
+
+  grid = new Array();
+  stack = new Array();
+
+  cols = floor(width / w);
+  rows = floor(height / w);
+
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      let cell = new Cell(i, j);
+      grid.push(cell);
+    }
+  }
+
+  current = grid[0];
+}
+
+let cols, rows, w, grid, current, stack;
+function init() {
+  make_canvas()
+
+  w = 30;
+  grid = new Array();
+  stack = new Array();
+
+  cols = floor(width / w);
+  rows = floor(height / w);
+
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      let cell = new Cell(i, j);
+      grid.push(cell);
+    }
+  }
+
+  current = grid[0];
+}
+
+const background_color = 0;
+let canvas;
+function make_canvas() {
+  let div_height = document.getElementById("name_header").clientHeight;
+  
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  
+  let n_width = windowWidth - padding * 2;
+  let n_height = windowHeight - div_height - padding;
+
+  canvas = createCanvas(n_width, n_height);
+  canvas.parent("canvas_container")
+
+  background(background_color);
 }
