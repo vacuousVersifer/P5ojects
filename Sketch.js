@@ -77,7 +77,11 @@ module.exports = class Sketch {
     }
 
     sketch_page += `  </head>
-  <body></body>
+  <body>
+    <div class="header">
+        <h1>${sketch.full_name}</h1>
+      </div>
+  </body>
 </html>`;
 
     return sketch_page;

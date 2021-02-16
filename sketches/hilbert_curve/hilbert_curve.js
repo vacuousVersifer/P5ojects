@@ -1,42 +1,12 @@
 /* globals windowHeight windowWidth createCanvas colorMode background int width height HSB pow stroke strokeWeight line noFill map p5 frameRate*/
-let canvas;
-
-const order = 10;
-let N, total;
-let path = new Array();
 
 function setup() {
-  if (windowHeight > windowWidth) {
-    canvas = createCanvas(windowWidth, windowWidth);
-  } else {
-    canvas = createCanvas(windowHeight, windowHeight);
-  }
-
-  canvas.style("display", "block");
-
   colorMode(HSB, 360, 255, 255);
-  background(0);
 
-  N = int(pow(2, order));
-  total = N * N;
-
-  for (let i = 0; i < total; i++) {
-    path[i] = hilbert(i);
-    let len = width / N;
-    path[i].mult(len);
-    path[i].add(len / 2, len / 2);
-  }
+  init();
 }
 
-let counter = 1;
-let step = 1000;
-let reset = false;
-
 function draw() {
-  if (!frameRate() > 55) {
-    step--;
-  }
-
   for (let i = 0; i < step; i++) {
     if (counter + i < path.length) {
       stroke(255);
@@ -96,4 +66,47 @@ function hilbert(i) {
     }
   }
   return v;
+}
+
+const background_color = 0;
+let canvas;
+
+function windowResized() {
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  size = size - padding;
+
+  canvas = createCanvas(size, size);
+
+  background(background_color);
+
+  counter = 1;
+}
+
+let order, N, total, path, counter, step, reset;
+function init() {
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  size = size - padding;
+
+  canvas = createCanvas(size, size);
+
+  background(background_color);
+
+  order = 10;
+  N, total;
+  path = new Array();
+  counter = 1;
+  step = 1000;
+  reset = false;
+
+  N = int(pow(2, order));
+  total = N * N;
+
+  for (let i = 0; i < total; i++) {
+    path[i] = hilbert(i);
+    let len = width / N;
+    path[i].mult(len);
+    path[i].add(len / 2, len / 2);
+  }
 }

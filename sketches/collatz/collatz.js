@@ -1,17 +1,13 @@
 /* globals createCanvas windowWidth windowHeight background resetMatrix translate width height rotate strokeWeight stroke line */
 
-let canvas;
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
-  canvas.style("display", "block");
-  background(0);
+  init();
 }
 
 let i = 0;
 let skip = 10;
 let upper = 1000000;
 function draw() {
-  console.log(i);
   if (i <= upper) {
     for (let a = 0; a < skip; a++) {
       i++;
@@ -61,4 +57,33 @@ function collatz(n) {
   } else {
     return (n * 3 + 1) / 2;
   }
+}
+
+const background_color = 0;
+let canvas;
+
+function windowResized() {
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  size = size - padding;
+
+  canvas = createCanvas(size, size);
+
+  background(background_color);
+  
+  i = 0;
+}
+
+function init() {
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  size = size - padding;
+
+  canvas = createCanvas(size, size);
+
+  background(background_color);
+
+  i = 0;
+  skip = 10;
+  upper = 1000000;
 }

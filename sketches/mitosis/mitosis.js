@@ -1,21 +1,11 @@
 /* global createCanvas windowWidth windowHeight width height Cell background mouseX mouseY */
 
-let canvas;
-
-let cells = new Array(10);
-
 function setup() {
-  canvas = createCanvas(windowWidth, windowHeight);
-  canvas.style("display", "block");
-
-  for (let i = 0; i < cells.length; i++) {
-    let cell = new Cell();
-    cells[i] = cell;
-  }
+  init()
 }
 
 function draw() {
-  background(200);
+  background(background_color);
   for (var i = 0; i < cells.length; i++) {
     cells[i].move();
     cells[i].show();
@@ -34,6 +24,44 @@ function mousePressed() {
 
 function keyPressed() {
   for (let i = 0; i > cells.length; i--) {
+    let cell = new Cell();
+    cells[i] = cell;
+  }
+}
+
+const background_color = 200;
+let canvas;
+
+function windowResized() {
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  size = size - padding;
+
+  canvas = createCanvas(size, size);
+
+  background(background_color);
+
+  cells = new Array(10);
+  
+  for (let i = 0; i < cells.length; i++) {
+    let cell = new Cell();
+    cells[i] = cell;
+  }
+}
+
+let cells;
+function init() {
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  size = size - padding;
+
+  canvas = createCanvas(size, size);
+
+  background(background_color);
+
+  cells = new Array(10);
+  
+  for (let i = 0; i < cells.length; i++) {
     let cell = new Cell();
     cells[i] = cell;
   }
