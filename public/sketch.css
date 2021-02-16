@@ -126,6 +126,11 @@ a:active {
   }
 }
 
+#canvas_container {
+  width: 100%;
+  text-align: center;
+}
+
 canvas {
-  
+  display: inline-block;
 }

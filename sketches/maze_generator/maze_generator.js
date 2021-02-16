@@ -54,17 +54,8 @@ function removeWalls(a, b) {
   }
 }
 
-const background_color = 50;
-let canvas;
-
 function windowResized() {
-  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
-  let padding = size / 25;
-  size = size - padding;
-
-  canvas = createCanvas(size, size);
-
-  background(background_color);
+  make_canvas()
 
   grid = new Array();
   stack = new Array();
@@ -84,13 +75,7 @@ function windowResized() {
 
 let cols, rows, w, grid, current, stack;
 function init() {
-  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
-  let padding = size / 25;
-  size = size - padding;
-
-  canvas = createCanvas(size, size);
-
-  background(background_color);
+  make_canvas()
 
   w = 30;
   grid = new Array();
@@ -107,4 +92,21 @@ function init() {
   }
 
   current = grid[0];
+}
+
+const background_color = 0;
+let canvas;
+function make_canvas() {
+  let div_height = document.getElementById("name_header").clientHeight;
+  
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  
+  let n_width = windowWidth - padding * 2;
+  let n_height = windowHeight - div_height - padding;
+
+  canvas = createCanvas(n_width, n_height);
+  canvas.parent("canvas_container")
+
+  background(background_color);
 }

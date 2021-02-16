@@ -68,30 +68,16 @@ function hilbert(i) {
   return v;
 }
 
-const background_color = 0;
-let canvas;
 
 function windowResized() {
-  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
-  let padding = size / 25;
-  size = size - padding;
-
-  canvas = createCanvas(size, size);
-
-  background(background_color);
+  make_canvas()
 
   counter = 1;
 }
 
 let order, N, total, path, counter, step, reset;
 function init() {
-  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
-  let padding = size / 25;
-  size = size - padding;
-
-  canvas = createCanvas(size, size);
-
-  background(background_color);
+  make_canvas()
 
   order = 10;
   N, total;
@@ -109,4 +95,20 @@ function init() {
     path[i].mult(len);
     path[i].add(len / 2, len / 2);
   }
+}
+
+const background_color = 0;
+let canvas;
+function make_canvas() {
+  let div_height = document.getElementById("name_header").clientHeight;
+  
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  
+  let n_height = windowHeight - div_height - padding;
+
+  canvas = createCanvas(n_height, n_height);
+  canvas.parent("canvas_container")
+
+  background(background_color);
 }

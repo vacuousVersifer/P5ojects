@@ -39,17 +39,8 @@ function draw() {
   d += 0.01;
 }
 
-const background_color = 0;
-let canvas;
-
 function windowResized() {
-  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
-  let padding = size / 25;
-  size = size - padding;
-
-  canvas = createCanvas(size, size);
-
-  background(background_color);
+  make_canvas()
 
   n = 0;
   d = 0;
@@ -57,14 +48,24 @@ function windowResized() {
 
 let n, d;
 function init() {
-  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
-  let padding = size / 25;
-  size = size - padding;
-
-  canvas = createCanvas(size, size);
-
-  background(background_color);
+  make_canvas()
 
   n = 0;
   d = 0;
+}
+
+const background_color = 0;
+let canvas;
+function make_canvas() {
+  let div_height = document.getElementById("name_header").clientHeight;
+  
+  let size = windowHeight > windowWidth ? windowWidth : windowHeight;
+  let padding = size / 25;
+  
+  let n_height = windowHeight - div_height - padding;
+
+  canvas = createCanvas(n_height, n_height);
+  canvas.parent("canvas_container")
+
+  background(background_color);
 }
