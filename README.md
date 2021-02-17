@@ -1,32 +1,27 @@
-# A p5.js Project
+<h1>The Hundred Day Project</h1>
 
-`vacuousVersifer/p5ojects`
+A simple website, each day I will add one major "thing"
+All things should be related to p5js, and the website infastructure
 
-A simple host for my p5js projects
+This will last for 100 days, and each day will be recorded below
 
-## List of Projects
+The project started on February 18th, 2021
+The project should end on May 29th, 2021
 
-- Collatz:
-  `A simple visualization of the collatz conjecture.`
-  [Source](https://thecodingtrain.com/challenges/coding-in-the-cabana/002-collatz-conjecture.html)
-- Hilbert Curve:
-  `A colorful showing of Hilber's Cool Curve`
-  [Source](https://thecodingtrain.com/challenges/coding-in-the-cabana/003-hilbert-curve.html)
-- Marching Squares:
-  `Sort of looks like how something like a fire would spread`
-  [Source](https://thecodingtrain.com/challenges/coding-in-the-cabana/005-marching-squares.html)
-- Maurer Rose:
-  `The maurer rose, starts at (0,0) and increases equally`
-  [Source](https://thecodingtrain.com/challenges/coding-in-the-cabana/001-maurer-rose.html)
-- Maze Generator:
-  `It makes mazes`
-  [Source](https://thecodingtrain.com/CodingChallenges/010.1-maze-dfs-p5.html)
-- Mitosis:
-  `Bare bones mitosis representation`
-  [Source](https://thecodingtrain.com/CodingChallenges/006-mitosis-p5.html)
-- Purple Rain:
-  `It would be great if it had rain noises`
-  [Source](https://thecodingtrain.com/CodingChallenges/004-purplerain.html)
-- Starfield:
-  `Don't go backwards`
-  [Source](https://thecodingtrain.com/CodingChallenges/001-starfield.html)
+If there is a day that cannot be worked on, it will be recorded
+
+<h2>
+    List of Ideas
+</h2>
+<ul></ul>
+
+<h2>
+    The Records
+</h2>
+<ul>
+  <li>
+    18 Feb 2021
+    
+    Blah blah blah
+  </li>
+</ul>
