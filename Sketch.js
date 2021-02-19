@@ -65,8 +65,6 @@ module.exports = class Sketch {
     <script src="${p5js_cdn}" defer></script>
 		<script src=${main_link} defer></script>`;
 
-    let additions = "";
-
     let length = sketch.files.additional.length;
 
     for (let i = 0; i < length; i++) {

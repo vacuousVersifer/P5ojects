@@ -2,11 +2,32 @@
 const express = require("express");
 const app = express();
 
+// HTTP
+const http = require("http");
+const server = http.createServer(app);
+
+// Helmet 
+const helmet = require("helmet");
+app.use(helmet());
+
+// CSP
+const csp = "default-src 'self' 'https://code.jquery.com/jquery-3.5.1.min.js';"
+app.use((req, res, next) => {
+  res.setHeader("content-security-policy", csp)
+  next()
+});
+
+// Socket.io
+const socketio = require("socket.io");
+const io = socketio(server);
+
 // Enviroment Variables
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv");
+dotenv.config();
+const PORT = process.env.PORT;
 
 // Listener
-const listener = app.listen(process.env.PORT, () => {
+const listener = server.listen(PORT, () => {
   console.log(`Listening on port ${listener.address().port}`);
 });
 
@@ -27,8 +48,13 @@ app.use(express.static("public"));
 
 // Main Page
 app.get("/", (req, res) => {
-  res.send(main_page);
+  res.sendFile(`${__dirname}/views/main.html`);
 });
+
+// Main Script
+app.get("/main.js", (req, res) => {
+  res.sendFile(`${__dirname}/public/main.js`)
+})
 
 // Sketch Pages
 app.get("/:sketch", (req, res) => {
@@ -63,3 +89,16 @@ app.get("/:sketch/:script", (req, res) => {
 
   res.sendFile(`${__dirname}/sketches/${sketchName}/${scriptName}`);
 });
+
+// Socket.io
+io.on("connection", socket => {
+  console.log(`User ${socket.id} has connected`);
+
+  socket.on("get sketches", () => {
+    socket.emit("got sketches", sketches);
+  })
+
+  socket.on("disconnect", () => {
+    console.log(`User ${socket.id} has disconnected`)
+  })
+})

@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 const get_items = require("./get_items.js");
 const Sketch = require("./Sketch.js");
 
