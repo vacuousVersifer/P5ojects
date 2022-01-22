@@ -1,8 +1,6 @@
 # A p5.js Project
 
-`vacuousVersifer/p5ojects`
-
-A simple host for my p5js projects
+Some p5.js based projects
 
 ## List of Projects
 
@@ -30,3 +28,5 @@ A simple host for my p5js projects
 - Starfield:
   `Don't go backwards`
   [Source](https://thecodingtrain.com/CodingChallenges/001-starfield.html)
+
+Broken
