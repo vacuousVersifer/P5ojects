@@ -10,7 +10,7 @@ function draw() {
   for (let i = 0; i < step; i++) {
     if (counter + i < path.length) {
       stroke(255);
-      strokeWeight(1);
+      strokeWeight(5);
       noFill();
       let h = map(counter, 0, path.length, 0, 360);
       stroke(h, 255, 255);
@@ -26,7 +26,8 @@ function draw() {
   }
 
   if (reset) {
-    reset = false;
+    saveCanvas()
+    // reset = false;
     background(0);
     counter = 1;
   } else {
@@ -79,11 +80,11 @@ let order, N, total, path, counter, step, reset;
 function init() {
   make_canvas()
 
-  order = 10;
+  order = 8;
   N, total;
   path = new Array();
   counter = 1;
-  step = 1000;
+  step = 100;
   reset = false;
 
   N = int(pow(2, order));

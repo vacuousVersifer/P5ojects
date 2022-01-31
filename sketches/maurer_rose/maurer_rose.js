@@ -14,7 +14,7 @@ function draw() {
   noFill();
   beginShape();
   strokeWeight(1);
-  for (let i = 0; i < 360; i++) {
+  for (let i = 0; i < 3600; i++) {
     let k = i * d;
     let r = (width / 2.5) * sin(n * k);
     let x = r * cos(k);
@@ -26,7 +26,7 @@ function draw() {
   beginShape();
   stroke(0, 0, 255, 155);
   strokeWeight(4);
-  for (let i = 0; i < 360; i++) {
+  for (let i = 0; i < 3600; i++) {
     let k = i;
     let r = (width / 2.5) * sin(n * k);
     let x = r * cos(k);
@@ -35,8 +35,8 @@ function draw() {
   }
   endShape(CLOSE);
 
-  n += 0.01;
-  d += 0.01;
+  // n += 0.01;
+  // d += 0.01;
 }
 
 function windowResized() {
@@ -50,8 +50,8 @@ let n, d;
 function init() {
   make_canvas()
 
-  n = 0;
-  d = 0;
+  n = 180;
+  d = 9;
 }
 
 const background_color = 0;

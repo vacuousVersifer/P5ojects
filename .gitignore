@@ -108,12 +108,3 @@ dist
 .glitch-assets
 package-lock.json
 shrinkwrap.yaml
-
-# Token File
-.env
-
-# For SQLite
-data/
-
-# For ESLint
-.eslintrc.json

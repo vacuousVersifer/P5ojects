@@ -22,7 +22,7 @@ html {
   font-family: "Roboto", "Consola", monospace;
 }
 
-.header {
+.header, span{ 
   background-color: var(--p5pink);
   color: #ffffff;
   padding: 15px;
@@ -133,4 +133,8 @@ a:active {
 
 canvas {
   display: inline-block;
+}
+
+.back {
+  float: right;
 }
